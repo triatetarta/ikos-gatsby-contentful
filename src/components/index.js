@@ -11,6 +11,7 @@ import ResidentialCommercial from "./ResidentialCommercial"
 import Newsletter from "./Newsletter"
 import Scroll from "./Scroll"
 import MobileMenu from "./MobileMenu"
+import FilterButtons from "./FilterButtons"
 
 export {
   About,
