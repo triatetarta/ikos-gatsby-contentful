@@ -6,16 +6,13 @@ import Showcase from "./Showcase"
 import WorkMision from "./WorkMision"
 import Footer from "./Footer"
 import Projects from "./Projects"
-import Filterbuttons from "./Filterbuttons"
 import ResidentialCommercial from "./ResidentialCommercial"
 import Newsletter from "./Newsletter"
 import Scroll from "./Scroll"
 import MobileMenu from "./MobileMenu"
-import FilterButtons from "./FilterButtons"
 
 export {
   About,
-  Filterbuttons,
   Navbar,
   SEO,
   Layout,
