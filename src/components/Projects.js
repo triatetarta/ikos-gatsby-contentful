@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import styled from "styled-components"
 import Image from "gatsby-image"
-import FilterButtons from "./Filterbuttons"
+import { FilterButtons } from "./index"
 import { Link } from "gatsby"
 
 const Projects = ({ nodes: data }) => {
