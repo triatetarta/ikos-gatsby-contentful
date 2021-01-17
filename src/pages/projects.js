@@ -1,17 +1,27 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { Layout, SEO, Projects } from "../components"
+import { SEO, Projects } from "../components"
+import { motion } from "framer-motion"
+import { pageAnimation } from "../animations/animations"
 
-const ProjectsPage = ({ data }) => {
+const ProjectsPage = props => {
   const {
     allContentfulProject: { nodes },
-  } = data
+  } = props.data
 
   return (
-    <Layout>
-      <SEO title="Projects" />
-      <Projects nodes={nodes} />
-    </Layout>
+    <>
+      <motion.div
+        variants={pageAnimation}
+        initial="hidden"
+        animate="show"
+        exit="exit"
+        key={props.location.pathname}
+      >
+        <SEO title="Projects" />
+        <Projects nodes={nodes} />
+      </motion.div>
+    </>
   )
 }
 

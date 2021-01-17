@@ -4,6 +4,7 @@ const GatsbyContext = createContext()
 
 const GatsbyProvider = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [hover, setHover] = useState(false)
 
   const showSidebar = () => {
     setIsSidebarOpen(true)
@@ -14,7 +15,15 @@ const GatsbyProvider = ({ children }) => {
   }
 
   return (
-    <GatsbyContext.Provider value={{ isSidebarOpen, showSidebar, hideSidebar }}>
+    <GatsbyContext.Provider
+      value={{
+        isSidebarOpen,
+        showSidebar,
+        hideSidebar,
+        hover,
+        setHover,
+      }}
+    >
       {children}
     </GatsbyContext.Provider>
   )

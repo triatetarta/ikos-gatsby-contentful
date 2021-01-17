@@ -1,9 +1,20 @@
 import React from "react"
 import styled from "styled-components"
+import { motion } from "framer-motion"
+import { scrollAnimation } from "../animations/animations"
+import { useScroll } from "./useScroll"
 
 const Footer = () => {
+  const [element, controls] = useScroll()
+
   return (
-    <Wrapper>
+    <Wrapper
+      layout
+      ref={element}
+      variants={scrollAnimation}
+      initial="hidden"
+      animate={controls}
+    >
       <div>
         <h2>Ikos Construction</h2>
         <h2>London</h2>
@@ -53,7 +64,7 @@ const Footer = () => {
   )
 }
 
-const Wrapper = styled.footer`
+const Wrapper = styled(motion.footer)`
   padding: 4rem 0;
   background-color: #333;
   display: flex;

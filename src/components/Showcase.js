@@ -3,39 +3,50 @@ import Background from "./Background"
 import Arrow from "./Arrow"
 import styled from "styled-components"
 import { Link } from "gatsby"
+import { motion } from "framer-motion"
+import { titleAnim, fade, maskRevealShowcase } from "../animations/animations"
 
 const Showcase = () => {
   return (
     <Wrapper>
       <div className="card">
         <article>
-          <div className="container">
-            <div className="first">
-              <h3>If you can dream it, we can create it</h3>
+          <motion.div className="container">
+            <div className="first hide">
+              <motion.h3 variants={titleAnim}>
+                If you can dream it, we can create it
+              </motion.h3>
             </div>
 
-            <div className="second">
-              <h1>let your home be unique and stylish</h1>
+            <div className="second hide">
+              <motion.h1 variants={titleAnim}>
+                let your home be unique and stylish
+              </motion.h1>
             </div>
 
-            <div className="third">
-              <p>
+            <div className="third hide">
+              <motion.p variants={titleAnim}>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste
                 magnam, ea accusamus debitis nulla impedit autem quod voluptatum
                 ex, dicta officiis beatae quibusdam officia consequatur unde
                 quisquam sapiente ab dolorum?
-              </p>
+              </motion.p>
             </div>
-
-            <div className="fourth">
-              <Link to="/projects">
-                <Arrow />
-              </Link>
+            <div className="fourth hide">
+              <motion.div variants={fade} className="fourth-div">
+                <Link to="/projects">
+                  <Arrow />
+                </Link>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
         </article>
       </div>
-      <Background />
+
+      <div className="hide">
+        <Background />
+        <motion.div variants={maskRevealShowcase} className="mask"></motion.div>
+      </div>
     </Wrapper>
   )
 }
@@ -43,6 +54,16 @@ const Showcase = () => {
 const Wrapper = styled.section`
   margin: 0 auto;
   position: relative;
+
+  .mask {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: white;
+  }
+
   .card {
     position: absolute;
     left: 0;
@@ -77,6 +98,7 @@ const Wrapper = styled.section`
         }
         p {
           padding: 0.5rem 0;
+          margin-bottom: 0;
         }
 
         svg {
@@ -84,6 +106,10 @@ const Wrapper = styled.section`
         }
       }
     }
+  }
+
+  .hide {
+    overflow: hidden;
   }
 
   @media screen and (max-width: 1024px) {
@@ -97,12 +123,6 @@ const Wrapper = styled.section`
         .container {
           max-width: 650px;
           flex-wrap: wrap;
-          .fourth {
-            svg {
-              width: 10rem;
-              height: 10rem;
-            }
-          }
         }
       }
     }
@@ -141,15 +161,15 @@ const Wrapper = styled.section`
             display: none;
           }
 
-          .fourth {
+          .hide {
             order: 3;
             margin-top: 3rem;
-            svg {
-              width: 7rem;
-              height: 7rem;
-            }
           }
         }
+      }
+
+      .hide {
+        overflow-x: hidden;
       }
     }
   }

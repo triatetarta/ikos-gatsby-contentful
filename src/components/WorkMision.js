@@ -1,57 +1,85 @@
 import React from "react"
 import Image from "gatsby-image"
 import styled from "styled-components"
+import { motion } from "framer-motion"
+import {
+  photoReveal,
+  maskReveal,
+  scrollAnimation,
+  titleAnim,
+} from "../animations/animations"
+import { useScroll } from "./useScroll"
 
 const WorkMision = ({ projects }) => {
+  const [element, controls] = useScroll()
+
   return (
-    <Wrapper>
+    <Wrapper
+      variants={scrollAnimation}
+      animate={controls}
+      initial="hidden"
+      ref={element}
+    >
       <div className="container">
         <div className="row-2">
           <div className="left-side">
-            <div className="bottom-img">
-              <Image fluid={projects[2].image.fluid} />
-            </div>
-            <div className="top-img">
-              <Image fluid={projects[3].image.fluid} />
+            <div className="hide">
+              <motion.div variants={photoReveal} className="bottom-img">
+                <Image fluid={projects[2].image.fluid} />
+                <motion.div variants={maskReveal} className="mask"></motion.div>
+              </motion.div>
+
+              <motion.div variants={photoReveal} className="top-img">
+                <Image fluid={projects[3].image.fluid} />
+                <motion.div className="mask" variants={maskReveal}></motion.div>
+              </motion.div>
             </div>
           </div>
           <div className="right-side">
             <div className="title">
-              <h3>
-                Vision <span>&</span> Mission
-              </h3>
+              <div className="hide">
+                <motion.h3 variants={titleAnim}>
+                  Vision <span>&</span> Mission
+                </motion.h3>
+              </div>
               <div className="text">
-                <p>
-                  Ikos Construction is a London based building company that
-                  offers integrated, tailored solutions, at very competitive
-                  prices. Renovation, refurbishment and construction of
-                  residential or commercial properties are our specialties.Our
-                  activities include a wide range of projects, from renovation
-                  of apartments, offices and restaurants, to home extensions and
-                  loft conversions. Furthermore, our sister company Tekton
-                  Joinery that specializes in high-end furniture manifucture and
-                  bespoke joinery, allows us to provide a fully tailored and
-                  high quality style.
-                </p>
+                <div className="hide">
+                  <motion.p variants={titleAnim}>
+                    Ikos Construction is a London based building company that
+                    offers integrated, tailored solutions, at very competitive
+                    prices. Renovation, refurbishment and construction of
+                    residential or commercial properties are our specialties.Our
+                    activities include a wide range of projects, from renovation
+                    of apartments, offices and restaurants, to home extensions
+                    and loft conversions. Furthermore, our sister company Tekton
+                    Joinery that specializes in high-end furniture manifucture
+                    and bespoke joinery, allows us to provide a fully tailored
+                    and high quality style.
+                  </motion.p>
+                </div>
               </div>
             </div>
             <div className="title">
-              <h3>
-                History <span>&</span> Work
-              </h3>
+              <div className="hide">
+                <motion.h3 variants={titleAnim}>
+                  History <span>&</span> Work
+                </motion.h3>
+              </div>
               <div className="text">
-                <p>
-                  We aspire to build strong human relationships based on the
-                  constant search for the best for the property, the environment
-                  and above all our clients. Our collaborations with architects,
-                  decorators, designers and specialized builders who share our
-                  same values have produced results of unique style and premium
-                  quality. Ikos Construction adheres to high standards that come
-                  from our core value: providing first class work on time and
-                  budget. Our project management process, which includes our
-                  personal involvement in each project, ensures the successful
-                  and optimal implementation.
-                </p>
+                <div className="hide">
+                  <motion.p variants={titleAnim}>
+                    We aspire to build strong human relationships based on the
+                    constant search for the best for the property, the
+                    environment and above all our clients. Our collaborations
+                    with architects, decorators, designers and specialized
+                    builders who share our same values have produced results of
+                    unique style and premium quality. Ikos Construction adheres
+                    to high standards that come from our core value: providing
+                    first class work on time and budget. Our project management
+                    process, which includes our personal involvement in each
+                    project, ensures the successful and optimal implementation.
+                  </motion.p>
+                </div>
               </div>
             </div>
           </div>
@@ -61,9 +89,13 @@ const WorkMision = ({ projects }) => {
   )
 }
 
-const Wrapper = styled.section`
+const Wrapper = styled(motion.section)`
   background-color: var(--clr-grey-10);
   margin-top: 6rem;
+
+  .hide {
+    overflow: hidden;
+  }
 
   .container {
     width: var(--max-width);
@@ -76,16 +108,31 @@ const Wrapper = styled.section`
       .left-side {
         position: relative;
         flex: 1;
+        overflow: hidden;
+
         .bottom-img {
           width: 80%;
           position: absolute;
           right: 4rem;
+          overflow: hidden;
         }
+
         .top-img {
           width: 50%;
           position: absolute;
           top: 22vh;
           left: 0;
+          overflow: hidden;
+        }
+
+        .mask {
+          overflow: hidden;
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          background: var(--clr-grey-10);
         }
       }
       .right-side {
@@ -101,6 +148,10 @@ const Wrapper = styled.section`
           }
           .text {
             padding-bottom: 1.5rem;
+
+            p {
+              margin-bottom: 0;
+            }
           }
         }
       }

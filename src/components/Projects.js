@@ -3,6 +3,8 @@ import styled from "styled-components"
 import Image from "gatsby-image"
 import FilterButtons from "./FilterButtons"
 import { Link } from "gatsby"
+import { motion } from "framer-motion"
+import { titleAnim, fade } from "../animations/animations"
 
 const Projects = ({ nodes: data }) => {
   const [projects, setProjects] = useState(data)
@@ -13,19 +15,22 @@ const Projects = ({ nodes: data }) => {
 
   return (
     <Wrapper>
-      <FilterButtons
-        projects={data}
-        setBackToAll={setBackToAll}
-        setProjects={setProjects}
-      />
-
+      <div className="hide">
+        <motion.div variants={titleAnim}>
+          <FilterButtons
+            projects={data}
+            setBackToAll={setBackToAll}
+            setProjects={setProjects}
+          />
+        </motion.div>
+      </div>
       <div className="section-center">
         {projects.map(item => {
           const { id, category, title, slug } = item
           const fluid = item.image.fluid
 
           return (
-            <article key={id}>
+            <motion.article variants={fade} key={id}>
               <Link to={`/projects/${slug}`}>
                 <div className="container">
                   <Image fluid={fluid} className="img" />
@@ -35,7 +40,7 @@ const Projects = ({ nodes: data }) => {
                   </div>
                 </div>
               </Link>
-            </article>
+            </motion.article>
           )
         })}
       </div>
@@ -45,6 +50,10 @@ const Projects = ({ nodes: data }) => {
 
 const Wrapper = styled.section`
   margin: 0 auto 6rem auto;
+
+  .hide {
+    overflow: hidden;
+  }
   .section-center {
     margin: 3rem auto 0 auto;
     max-width: var(--max-width);

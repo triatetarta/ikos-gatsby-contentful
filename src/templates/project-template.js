@@ -1,9 +1,16 @@
 import React from "react"
-import { graphql, Link } from "gatsby"
-import { Layout } from "../components"
+import { graphql } from "gatsby"
+import { SEO } from "../components"
 import Image from "gatsby-image"
 import styled from "styled-components"
 import BackgroundImage from "gatsby-background-image"
+import { motion } from "framer-motion"
+import {
+  pageAnimation,
+  titleAnim,
+  maskRevealShowcase,
+} from "../animations/animations"
+import Rows from "../components/Rows"
 
 const projectTemplate = ({
   data: {
@@ -17,93 +24,78 @@ const projectTemplate = ({
   },
 }) => {
   return (
-    <Layout>
-      <Background>
-        <BackgroundImage
-          Tag="div"
-          fluid={photos[0].fluid}
-          className="bcg"
-          preserveStackingContext={true}
-        >
-          <h2>{title}</h2>
-        </BackgroundImage>
-      </Background>
-      <Wrapper>
-        <article>
-          <div className="img">
-            <Image fluid={fluid} alt={title} />
+    <>
+      <SEO title={`${title}`} />
+      <motion.div
+        variants={pageAnimation}
+        initial="hidden"
+        animate="show"
+        exit="exit"
+      >
+        <Background>
+          <BackgroundImage
+            Tag="div"
+            fluid={photos[0].fluid}
+            className="bcg"
+            preserveStackingContext={true}
+          >
+            <div className="hide">
+              <motion.h2 variants={titleAnim}>{title}</motion.h2>
+            </div>
+          </BackgroundImage>
+          <motion.div
+            variants={maskRevealShowcase}
+            className="mask"
+          ></motion.div>
+        </Background>
+        <Wrapper>
+          <article>
+            <div className="img">
+              <Image fluid={fluid} alt={title} />
+              <motion.div
+                variants={maskRevealShowcase}
+                className="mask"
+              ></motion.div>
+            </div>
+          </article>
+          <article>
+            <div className="hide">
+              <motion.h2 variants={titleAnim}>{title}</motion.h2>
+            </div>
+            <div className="hide">
+              <motion.h5 variants={titleAnim}>{category}</motion.h5>
+            </div>
+            <div className="hide">
+              <motion.p variants={titleAnim}>{info}</motion.p>
+            </div>
+          </article>
+        </Wrapper>
+        <RowOne className="row-1">
+          <div className="left-image">
+            <Image fluid={photos[1].fluid} />
+            <motion.div
+              variants={maskRevealShowcase}
+              className="mask"
+            ></motion.div>
+            <div className="text">
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Aliquid, saepe numquam tempore recusandae temporibus natus
+                accusamus vitae facere ipsum! Dolore?
+              </p>
+            </div>
           </div>
-        </article>
-        <article>
-          <h2>{title}</h2>
-          <h5>{category}</h5>
-          <p>{info}</p>
-        </article>
-      </Wrapper>
-      <RowOne className="row-1">
-        <div className="left-image">
-          <Image fluid={photos[1].fluid} />
-          <div className="text">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid,
-              saepe numquam tempore recusandae temporibus natus accusamus vitae
-              facere ipsum! Dolore?
-            </p>
+          <div className="right-image">
+            <Image fluid={photos[2].fluid} />
+            <motion.div
+              variants={maskRevealShowcase}
+              className="mask"
+            ></motion.div>
           </div>
-        </div>
-        <div className="right-image">
-          <Image fluid={photos[2].fluid} />
-        </div>
-      </RowOne>
-      <RowTwo className="row-2">
-        <div className="left-side">
-          <h4>Room 1</h4>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Perferendis excepturi vitae illo cupiditate. Corporis aperiam a
-            porro nam vitae blanditiis molestiae omnis quos. Nisi similique
-            numquam cum magnam possimus. Porro.
-          </p>
-          <div className="img">
-            <Image fluid={photos[3].fluid} />
-          </div>
-        </div>
-        <div className="right-side">
-          <h4>Room 2</h4>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Perferendis excepturi vitae illo cupiditate. Corporis aperiam a
-            porro nam vitae blanditiis molestiae omnis quos. Nisi similique
-            numquam cum magnam possimus. Porro.
-          </p>
-          <div className="img">
-            <Image fluid={photos[4].fluid} />
-          </div>
-        </div>
-      </RowTwo>
-      <RowThree className="row-3">
-        <div className="img">
-          <Image
-            fluid={{ ...photos[5].fluid, aspectRatio: 8 / 3 }}
-            imgStyle={{ objectFit: "cover", objectPosition: "50% 50%" }}
-          />
-          <p>description</p>
-        </div>
-      </RowThree>
-      <RowFour className="row-4">
-        <div className="img">
-          <Image fluid={photos[6].fluid} />
-          <p>description</p>
-        </div>
-        <div className="img">
-          <Image fluid={photos[7].fluid} />
-          <p>description</p>
-        </div>
-      </RowFour>
-      <ButtonBottom className="back">
-        <Link to="/projects">back to projects</Link>
-      </ButtonBottom>
-    </Layout>
+        </RowOne>
+        <Rows photos={photos} />
+      </motion.div>
+    </>
   )
 }
 
@@ -130,6 +122,11 @@ export const query = graphql`
 `
 
 const Background = styled.div`
+  position: relative;
+  .hide {
+    overflow: hidden;
+  }
+
   .bcg {
     min-height: 30vh;
 
@@ -139,6 +136,15 @@ const Background = styled.div`
       text-transform: uppercase;
       font-family: var(--ff-secondary);
     }
+  }
+
+  .mask {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: white;
   }
 
   @media screen and (max-width: 1024px) {
@@ -168,16 +174,30 @@ const Wrapper = styled.section`
   grid-template-columns: 1fr 2fr;
   column-gap: 2rem;
 
+  .hide {
+    overflow: hidden;
+  }
+
   article {
     padding-right: 4rem;
+    position: relative;
     .img {
       width: 400px;
+
+      .mask {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: white;
+      }
     }
 
     h2 {
       font-size: 2.2rem;
       font-family: var(--ff-secondary);
-      margin-bottom: 0.5rem;
+      padding-bottom: 0.5rem;
     }
 
     h5 {
@@ -186,7 +206,10 @@ const Wrapper = styled.section`
       color: var(--clr-white);
       background-color: var(--clr-primary-5);
       padding: 0.2rem 0.3rem;
-      margin-bottom: 1.4rem;
+    }
+    p {
+      margin-bottom: 0;
+      padding-top: 1rem;
     }
   }
 
@@ -202,7 +225,7 @@ const Wrapper = styled.section`
 
       h2 {
         font-size: 1.4rem;
-        margin-top: 1rem;
+        padding-top: 1rem;
       }
 
       h5 {
@@ -224,7 +247,7 @@ const Wrapper = styled.section`
 
       h2 {
         font-size: 1.2rem;
-        margin-top: 1rem;
+        padding-top: 1rem;
       }
 
       h5 {
@@ -241,6 +264,21 @@ const RowOne = styled.div`
   display: grid;
   grid-template-columns: 2fr 3fr;
   column-gap: 2rem;
+
+  .left-image,
+  .right-image {
+    overflow: hidden;
+    position: relative;
+
+    .mask {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: white;
+    }
+  }
 
   @media screen and (max-width: 1024px) {
     max-width: 90vw;
@@ -263,120 +301,6 @@ const RowOne = styled.div`
           padding: 0.75rem 0 1rem 0;
         }
       }
-    }
-  }
-`
-
-const RowTwo = styled.div`
-  width: var(--max-width);
-  max-width: var(--max-width);
-  margin: 0rem auto 6rem auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 2rem;
-
-  .left-side,
-  .right-side {
-    h4 {
-      font-size: 1.2rem;
-      font-weight: bold;
-      margin-bottom: 1rem;
-    }
-    p {
-      margin-bottom: 1rem;
-    }
-  }
-
-  @media screen and (max-width: 1024px) {
-    max-width: 90vw;
-    margin: 0rem auto 3rem auto;
-    grid-template-columns: 1fr 1fr;
-  }
-
-  @media screen and (max-width: 414px) {
-    max-width: 90vw;
-    grid-template-columns: 1fr;
-    margin: 0rem auto 3rem auto;
-
-    .right-side {
-      padding-top: 2rem;
-    }
-  }
-`
-
-const RowThree = styled.div`
-  width: var(--max-width);
-  max-width: var(--max-width);
-  margin: 0rem auto 6rem auto;
-
-  p {
-    margin-top: 1rem;
-  }
-
-  @media screen and (max-width: 1024px) {
-    max-width: 100vw;
-    grid-template-columns: 1fr;
-    margin: 0rem auto 3rem auto;
-    .img {
-      p {
-        margin-left: 10vw;
-      }
-    }
-  }
-
-  @media screen and (max-width: 414px) {
-    max-width: 100vw;
-    grid-template-columns: 1fr;
-    margin: 0rem auto 3rem auto;
-
-    .img {
-      p {
-        margin-left: 10vw;
-      }
-    }
-  }
-`
-
-const RowFour = styled.div`
-  width: var(--max-width);
-  max-width: var(--max-width);
-  margin: 0rem auto 6rem auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 2rem;
-
-  p {
-    margin-top: 1rem;
-  }
-
-  @media screen and (max-width: 1024px) {
-    max-width: 90vw;
-    grid-template-columns: 1fr;
-    margin: 0rem auto 3rem auto;
-  }
-
-  @media screen and (max-width: 414px) {
-    max-width: 90vw;
-    grid-template-columns: 1fr;
-    margin: 0rem auto 3rem auto;
-  }
-`
-
-const ButtonBottom = styled.div`
-  text-align: center;
-  margin-bottom: 3rem;
-
-  a {
-    text-decoration: none;
-    color: var(--black);
-    border: 1px solid black;
-    padding: 1rem 1rem;
-  }
-
-  @media screen and (max-width: 414px) {
-    a {
-      font-size: 0.75rem;
-      padding: 0.75rem 0.75rem;
     }
   }
 `

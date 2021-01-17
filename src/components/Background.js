@@ -1,7 +1,7 @@
 import React from "react"
 import BackgroundImage from "gatsby-background-image"
 import { useStaticQuery, graphql } from "gatsby"
-import styled, { keyframes } from "styled-components"
+import styled from "styled-components"
 
 const query = graphql`
   {
@@ -25,6 +25,7 @@ const Background = ({ children, image }) => {
   return (
     <Wrapper>
       <div className="blank"></div>
+
       <BackgroundImage
         Tag="div"
         fluid={image || fluid}
@@ -37,31 +38,21 @@ const Background = ({ children, image }) => {
   )
 }
 
-const fadeIn = keyframes`
-from {
-    background-color: rgba(255,255,255,0.8)
-}
-to{
-    background-color: rgba(255,255,255,0.2)
-}
-`
-
 const Wrapper = styled.section`
   display: flex;
   flex-direction: row;
   width: 100vw;
+  overflow: hidden;
+
   .blank {
     flex: 1;
   }
+
   .bcg {
     flex: 2;
     position: relative;
     min-height: 80vh;
     width: 100%;
-    animation: ${fadeIn} 2s ease 1 forwards;
-  }
-  .bcg::before {
-    opacity: 1;
   }
 
   @media screen and (max-width: 414px) {

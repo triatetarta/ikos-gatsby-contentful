@@ -1,39 +1,67 @@
 import React from "react"
 import Image from "gatsby-image"
 import styled from "styled-components"
+import { useScroll } from "./useScroll"
+import { motion } from "framer-motion"
+import {
+  scrollAnimation,
+  titleAnim,
+  photoReveal,
+  maskReveal,
+} from "../animations/animations"
 
 const About = ({ projects }) => {
+  const [element, controls] = useScroll()
   return (
-    <Wrapper id="about">
-      <div className="title">
-        <h2>
+    <Wrapper
+      ref={element}
+      variants={scrollAnimation}
+      animate={controls}
+      id="about"
+    >
+      <div className="title hide">
+        <motion.h2 variants={titleAnim}>
           your home is our <br />
           concern
-        </h2>
+        </motion.h2>
       </div>
       <div className="row-1">
         <div className="left-side">
-          <div className="left-img">
-            <Image fluid={projects[5].image.fluid} />
+          <div className="hide">
+            <motion.div className="left-img" variants={photoReveal}>
+              <Image fluid={projects[5].image.fluid} />
+              <motion.div variants={maskReveal} className="mask"></motion.div>
+            </motion.div>
           </div>
         </div>
         <div className="right-side">
           <div className="right-side-text">
-            <h4>about us</h4>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat
-              aspernatur facilis sapiente repellat possimus delectus impedit,
-              beatae provident perferendis sequi.
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum
-              suscipit repudiandae possimus voluptas, libero culpa distinctio
-              quaerat provident eaque, animi aliquam perspiciatis tenetur
-              dolores. Rerum?
-            </p>
+            <div className="hide">
+              <motion.h4 variants={titleAnim}>about us</motion.h4>
+            </div>
+            <div className="hide">
+              <motion.p variants={titleAnim}>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Quaerat aspernatur facilis sapiente repellat possimus delectus
+                impedit, beatae provident perferendis sequi.
+                <br />
+                <br />
+              </motion.p>
+            </div>
+            <div className="hide">
+              <motion.p variants={titleAnim} s>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum
+                suscipit repudiandae possimus voluptas, libero culpa distinctio
+                quaerat provident eaque, animi aliquam perspiciatis tenetur
+                dolores. Rerum?
+              </motion.p>
+            </div>
           </div>
-          <div className="right-img">
-            <Image fluid={projects[4].image.fluid} />
+          <div className="hide">
+            <motion.div className="right-img" variants={photoReveal}>
+              <Image fluid={projects[4].image.fluid} />
+              <motion.div variants={maskReveal} className="mask"></motion.div>
+            </motion.div>
           </div>
         </div>
       </div>
@@ -41,11 +69,14 @@ const About = ({ projects }) => {
   )
 }
 
-const Wrapper = styled.section`
+const Wrapper = styled(motion.section)`
   padding-top: 6rem;
   max-width: var(--max-width);
   width: var(--max-width);
   margin: 0 auto;
+  .hide {
+    overflow: hidden;
+  }
 
   h2 {
     font-weight: lighter;
@@ -62,8 +93,23 @@ const Wrapper = styled.section`
     .left-side {
       padding: 1rem 2rem 1rem 0;
       flex: 1;
+      overflow: hidden;
+      position: relative;
+
       .left-img {
         width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      .mask {
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: white;
       }
     }
     .right-side {
@@ -81,9 +127,24 @@ const Wrapper = styled.section`
           font-size: 1.3rem;
           text-transform: uppercase;
         }
+
+        p {
+          margin-bottom: 0;
+        }
       }
       .right-img {
         width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+      .mask {
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: white;
       }
     }
   }

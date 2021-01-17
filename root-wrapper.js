@@ -1,5 +1,6 @@
 import React from "react"
 import { createGlobalStyle } from "styled-components"
+import { Layout } from "./src/components"
 import { GatsbyProvider } from "./src/context/context"
 
 const GlobalStyle = createGlobalStyle`
@@ -90,7 +91,6 @@ h2,
 h3,
 h4 {
   letter-spacing: var(--spacing);
-  text-transform: capitalize;
   line-height: 1.25;
   font-family: var(--ff-primary);
   font-weight: 400;
@@ -161,13 +161,11 @@ p {
 
 `
 
-export const wrapRootElement = ({ element }) => {
+export const wrapPageElement = ({ element, props }) => {
   return (
-    <>
-      <GatsbyProvider>
-        <GlobalStyle />
-        {element}
-      </GatsbyProvider>
-    </>
+    <GatsbyProvider>
+      <GlobalStyle />
+      <Layout {...props}>{element}</Layout>
+    </GatsbyProvider>
   )
 }

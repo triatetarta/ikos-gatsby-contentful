@@ -1,27 +1,26 @@
-import React, { useState } from "react"
+import React from "react"
 import addToMailchimp from "gatsby-plugin-mailchimp"
 import styled from "styled-components"
 import Background2 from "./Background2"
-import { useScroll } from "./useScroll"
-import { motion } from "framer-motion"
-import { scrollAnimation, titleAnim, fade } from "../animations/animations"
 
-const Newsletter = () => {
-  const [state, setState] = useState({
-    email: "",
-    message: "Subscribe to receive news, offers, updates and much more:",
-  })
+class Newsletter extends React.Component {
+  constructor(props) {
+    super(props)
 
-  const [element, controls] = useScroll()
-
-  const changeEmailHandler = e => {
-    setState({ email: e.target.value })
+    this.state = {
+      email: "",
+      message: "Subscribe to receive news, offers, updates and much more:",
+    }
   }
 
-  const handleSubmit = e => {
+  changeEmailHandler = e => {
+    this.setState({ email: e.target.value })
+  }
+
+  handleSubmit = e => {
     e.preventDefault()
-    setState({ message: "Thank you for subscribing to our Newsletter!" })
-    addToMailchimp(state.email) // listFields are optional if you are only capturing the email address.
+    this.setState({ message: "Thank you for subscribing to our Newsletter!" })
+    addToMailchimp(this.state.email) // listFields are optional if you are only capturing the email address.
       .then(data => {
         // I recommend setting data to React state
         // but you can do whatever you want (including ignoring this `then()` altogether)
@@ -33,54 +32,44 @@ const Newsletter = () => {
         // see below for how to handle errors
       })
 
-    setState({ email: "" })
+    this.setState({ email: "" })
   }
 
-  return (
-    <Background2>
-      <Wrapper
-        ref={element}
-        variants={scrollAnimation}
-        animate={controls}
-        id="contact"
-      >
-        <div className="section-center">
-          <div className="news">
-            <div className="letter">
-              <motion.div className="form">
-                <div className="hide">
-                  <motion.p variants={titleAnim}>{state.message}</motion.p>
+  render() {
+    return (
+      <Background2>
+        <Wrapper id="contact">
+          <div className="section-center">
+            <div className="news">
+              <div className="letter">
+                <div className="form">
+                  <p>{this.state.message}</p>
+                  <form className="subscribe" onSubmit={this.handleSubmit}>
+                    <input
+                      type="email"
+                      value={this.state.email}
+                      onChange={this.changeEmailHandler}
+                      name="EMAIL"
+                      id="mce-EMAIL"
+                      className="subscribe-email"
+                      placeholder="Your Email"
+                      required
+                    />
+                    <button className="btn_send" type="submit">
+                      Subscribe
+                    </button>
+                  </form>
                 </div>
-
-                <motion.form
-                  variants={fade}
-                  className="subscribe"
-                  onSubmit={handleSubmit}
-                >
-                  <input
-                    type="email"
-                    value={state.email}
-                    onChange={changeEmailHandler}
-                    name="EMAIL"
-                    id="mce-EMAIL"
-                    className="subscribe-email"
-                    placeholder="Your Email"
-                    required
-                  />
-                  <button className="btn_send" type="submit">
-                    Subscribe
-                  </button>
-                </motion.form>
-              </motion.div>
+              </div>
             </div>
           </div>
-        </div>
-      </Wrapper>
-    </Background2>
-  )
+        </Wrapper>
+      </Background2>
+    )
+  }
 }
 
-const Wrapper = styled(motion.section)`
+const Wrapper = styled.section`
   width: 100vw;
 
   .news {
@@ -95,13 +84,10 @@ const Wrapper = styled(motion.section)`
         left: 50%;
         transform: translate(-50%, 0%);
 
-        .hide {
-          overflow: hidden;
-          p {
-            padding-top: 2rem;
-            margin-bottom: 0;
-            text-align: center;
-          }
+        p {
+          padding-top: 2rem;
+          margin-bottom: 0;
+          text-align: center;
         }
 
         form {

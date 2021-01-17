@@ -1,6 +1,5 @@
 import React from "react"
 import {
-  Layout,
   SEO,
   Showcase,
   About,
@@ -10,23 +9,32 @@ import {
   Scroll,
 } from "../components/"
 import { graphql } from "gatsby"
+import { motion } from "framer-motion"
+import { pageAnimation } from "../animations/animations"
 
-const IndexPage = ({ data }) => {
+const IndexPage = props => {
   const {
     allContentfulHomePage: { nodes: projects },
-  } = data
+  } = props.data
 
   return (
-    <Layout>
-      <Scroll showBelow={250} />
-      <SEO title="Home" />
-
-      <Showcase />
-      <About projects={projects} />
-      <WorkMision projects={projects} />
-      <ResidentialCommercial projects={projects} />
-      <Newsletter />
-    </Layout>
+    <>
+      <motion.div
+        variants={pageAnimation}
+        initial="hidden"
+        animate="show"
+        exit="exit"
+        key={props.location.pathname}
+      >
+        <Scroll showBelow={250} />
+        <SEO title="Home" />
+        <Showcase />
+        <About projects={projects} />
+        <WorkMision projects={projects} />
+        <ResidentialCommercial projects={projects} />
+        <Newsletter />
+      </motion.div>
+    </>
   )
 }
 
