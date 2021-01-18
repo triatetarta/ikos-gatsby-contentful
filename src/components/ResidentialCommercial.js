@@ -13,15 +13,16 @@ import {
 
 const ResidentialCommercial = ({ projects }) => {
   const [element, controls] = useScroll()
+  const [element1, controls1] = useScroll()
   return (
-    <Wrapper
-      ref={element}
-      variants={scrollAnimation}
-      animate={controls}
-      initial="hidden"
-      id="projects"
-    >
-      <div className="row-1">
+    <Wrapper id="projects">
+      <motion.div
+        ref={element}
+        variants={scrollAnimation}
+        animate={controls}
+        initial="hidden"
+        className="row-1"
+      >
         <div className="left-column">
           <div className="text">
             <div className="hide">
@@ -54,7 +55,14 @@ const ResidentialCommercial = ({ projects }) => {
             </ul>
             <Link to="/projects">
               <div className="hide">
-                <motion.button variants={titleAnim}>all projects</motion.button>
+                <ButtonBlack variants={titleAnim}>
+                  <div class="btn-container">
+                    <Link to="/projects" role="button">
+                      all projects
+                    </Link>
+                    <div class="ease"></div>
+                  </div>
+                </ButtonBlack>
               </div>
             </Link>
           </div>
@@ -67,8 +75,14 @@ const ResidentialCommercial = ({ projects }) => {
             </motion.div>
           </div>
         </div>
-      </div>
-      <div className="row-2">
+      </motion.div>
+      <motion.div
+        ref={element1}
+        variants={scrollAnimation}
+        animate={controls1}
+        initial="hidden"
+        className="row-2"
+      >
         <div className="left-column">
           <div className="hide">
             <motion.div variants={photoReveal} className="left-img">
@@ -109,12 +123,19 @@ const ResidentialCommercial = ({ projects }) => {
             </ul>
             <Link to="/projects">
               <div className="hide">
-                <motion.button variants={titleAnim}>all projects</motion.button>
+                <ButtonBlack variants={titleAnim}>
+                  <div class="btn-container">
+                    <Link to="/projects" role="button">
+                      all projects
+                    </Link>
+                    <div class="ease"></div>
+                  </div>
+                </ButtonBlack>
               </div>
             </Link>
           </div>
         </div>
-      </div>
+      </motion.div>
     </Wrapper>
   )
 }
@@ -295,11 +316,6 @@ const Wrapper = styled(motion.section)`
               padding: 0.6rem 0;
             }
           }
-
-          button {
-            padding: 0.6rem 1.8rem;
-            font-size: 1rem;
-          }
         }
       }
       .right-column {
@@ -343,11 +359,6 @@ const Wrapper = styled(motion.section)`
               padding: 0.6rem 0;
             }
           }
-
-          button {
-            padding: 0.6rem 1.8rem;
-            font-size: 1rem;
-          }
         }
       }
     }
@@ -361,6 +372,77 @@ const Wrapper = styled(motion.section)`
 
     h2 {
       font-size: 2.2rem;
+    }
+  }
+`
+
+const ButtonBlack = styled(motion.div)`
+  display: flex;
+  align-items: flex-start;
+  justify-content: start;
+  text-align: center;
+  .btn-container {
+    margin: 1rem;
+  }
+
+  .btn-container > a {
+    float: left;
+    font: 100 1.2rem/50px sans-serif;
+    text-align: center;
+    background: transparent;
+    color: #333;
+    border: 1px solid #333;
+    width: 230px;
+    margin-top: -2px;
+    cursor: pointer;
+    -webkit-transition: all ease 0.25s;
+    -moz-transition: all ease 0.25s;
+    -o-transition: all ease 0.25s;
+    transition: all ease 0.25s;
+  }
+
+  .btn-container > a:hover {
+    background: rgba(255, 255, 255, 0);
+    color: #fff;
+  }
+
+  .ease {
+    background: #ffffff;
+    width: 0px;
+    height: 50px;
+    -webkit-transition: all ease 0.25s;
+    -moz-transition: all ease 0.25s;
+    -o-transition: all ease 0.25s;
+    transition: all ease 0.25s;
+  }
+
+  .btn-container:hover .ease {
+    background: #333;
+    border: 0;
+    width: 230px;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .btn-container > a {
+      width: 130px;
+      font: 100 1rem/50px sans-serif;
+    }
+    .btn-container:hover .ease {
+      background: #333;
+      border: 0;
+      width: 130px;
+    }
+  }
+
+  @media screen and (max-width: 414px) {
+    .btn-container > a {
+      width: 120px;
+      font: 100 0.8rem/50px sans-serif;
+    }
+    .btn-container:hover .ease {
+      background: #333;
+      border: 0;
+      width: 120px;
     }
   }
 `
