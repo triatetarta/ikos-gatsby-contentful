@@ -26,10 +26,8 @@ const Showcase = () => {
 
             <div className="third hide">
               <motion.p variants={titleAnim}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste
-                magnam, ea accusamus debitis nulla impedit autem quod voluptatum
-                ex, dicta officiis beatae quibusdam officia consequatur unde
-                quisquam sapiente ab dolorum?
+                Every year more and more people want to move to their own dream
+                housing. If you can dream it, we can create it.
               </motion.p>
             </div>
             <div className="fourth hide">
