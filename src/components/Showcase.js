@@ -27,7 +27,7 @@ const Showcase = () => {
             <div className="third hide">
               <motion.p variants={titleAnim}>
                 Every year more and more people want to move to their own dream
-                housing. If you can dream it, we can create it.
+                house. If you can dream it, we can create it.
               </motion.p>
             </div>
             <div className="fourth hide">

@@ -45,16 +45,15 @@ const WorkMision = ({ projects }) => {
               <div className="text">
                 <div className="hide">
                   <motion.p variants={titleAnim}>
-                    Ikos Construction is a London based building company that
-                    offers integrated, tailored solutions, at very competitive
+                    We offer integrated, tailored solutions, at very competitive
                     prices. Renovation, refurbishment and construction of
-                    residential or commercial properties are our specialties.Our
-                    activities include a wide range of projects, from renovation
-                    of apartments, offices and restaurants, to home extensions
-                    and loft conversions. Furthermore, our sister company Tekton
-                    Joinery that specializes in high-end furniture manifucture
-                    and bespoke joinery, allows us to provide a fully tailored
-                    and high quality style.
+                    residential or commercial properties are our specialties.
+                    Our activities include a wide range of projects, from
+                    renovation of apartments, offices and restaurants, to home
+                    extensions and loft conversions. Furthermore, our sister
+                    company Tekton Joinery specializes in manifucturing high-end
+                    furniture and bespoke joinery, allowing us to provide a
+                    fully tailored and high quality finish.
                   </motion.p>
                 </div>
               </div>
@@ -68,16 +67,17 @@ const WorkMision = ({ projects }) => {
               <div className="text">
                 <div className="hide">
                   <motion.p variants={titleAnim}>
-                    We aspire to build strong human relationships based on the
-                    constant search for the best for the property, the
-                    environment and above all our clients. Our collaborations
-                    with architects, decorators, designers and specialized
-                    builders who share our same values have produced results of
-                    unique style and premium quality. Ikos Construction adheres
-                    to high standards that come from our core value: providing
-                    first class work on time and budget. Our project management
-                    process, which includes our personal involvement in each
-                    project, ensures the successful and optimal implementation.
+                    Working in the industry for more than twenty years we aspire
+                    to build strong human relationships based on reliability in
+                    our business and trust between us and our clients. Our
+                    collaborations with architects, decorators, designers and
+                    specialized builders who share the same values with us, have
+                    produced results of unique style and premium quality. Ikos
+                    Construction adheres to high standards coming up from our
+                    core value: providing first class work on time and budget.
+                    Our project management process, which includes our personal
+                    involvement in each project, ensures the successful and
+                    optimal implementation.
                   </motion.p>
                 </div>
               </div>

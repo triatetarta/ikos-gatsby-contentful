@@ -30,27 +30,29 @@ const ResidentialCommercial = ({ projects }) => {
             </div>
             <div className="hide">
               <motion.p variants={titleAnim}>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias
-                repudiandae explicabo fugit dolorum laudantium ipsum temporibus
-                quisquam magnam asperiores impedit!
+                Most of our projects relate to residential properties, such as
+                flats, houses and summer studios.
                 <br />
                 <br />
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Ratione, culpa.
+                We are capable of undertaking:
               </motion.p>
             </div>
 
             <ul>
               <div className="hide">
-                <motion.li variants={titleAnim}>Lorem, ipsum.</motion.li>
-              </div>
-              <div className="hide">
                 <motion.li variants={titleAnim}>
-                  Lorem ipsum dolor sit.
+                  Kitchen - bathroom refurbishment.
                 </motion.li>
               </div>
               <div className="hide">
-                <motion.li variants={titleAnim}>Lorem, ipsum dolor.</motion.li>
+                <motion.li variants={titleAnim}>
+                  Full interior fit-outs.
+                </motion.li>
+              </div>
+              <div className="hide">
+                <motion.li variants={titleAnim}>
+                  Extension - Loft conversion.
+                </motion.li>
               </div>
             </ul>
             <Link to="/projects">
@@ -98,27 +100,34 @@ const ResidentialCommercial = ({ projects }) => {
             </div>
             <div className="hide">
               <motion.p variants={titleAnim}>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias
-                repudiandae explicabo fugit dolorum laudantium ipsum temporibus
-                quisquam magnam asperiores impedit!
+                Other than residential properties, Ikos has worked on commercial
+                projects, such as restaurants, bars, coffee shops, offices and
+                other businesses.
                 <br />
                 <br />
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Ratione, culpa.
+                Some of our clients are:
               </motion.p>
             </div>
 
             <ul>
               <div className="hide">
-                <motion.li variants={titleAnim}>Lorem, ipsum.</motion.li>
-              </div>
-              <div className="hide">
                 <motion.li variants={titleAnim}>
-                  Lorem ipsum dolor sit.
+                  Stirling Ackroyd and Suzi Tros.
                 </motion.li>
               </div>
               <div className="hide">
-                <motion.li variants={titleAnim}>Lorem, ipsum dolor.</motion.li>
+                <motion.li variants={titleAnim}>The Nook Cafe.</motion.li>
+              </div>
+              <div className="hide">
+                <motion.li variants={titleAnim}>
+                  The Prostate Cancer Research Centre.
+                </motion.li>
+              </div>
+              <div className="hide">
+                <motion.li variants={titleAnim}>Hygge Pygge Cafe.</motion.li>
+              </div>
+              <div className="hide">
+                <motion.li variants={titleAnim}>We Grill.</motion.li>
               </div>
             </ul>
             <Link to="/projects">

@@ -41,19 +41,18 @@ const About = ({ projects }) => {
             </div>
             <div className="hide">
               <motion.p variants={titleAnim}>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Quaerat aspernatur facilis sapiente repellat possimus delectus
-                impedit, beatae provident perferendis sequi.
+                Ikos was established in London in 2014 by its director, Christos
+                and started undertaking small refurbishments around Northwest
+                London.
                 <br />
                 <br />
               </motion.p>
             </div>
             <div className="hide">
               <motion.p variants={titleAnim} s>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum
-                suscipit repudiandae possimus voluptas, libero culpa distinctio
-                quaerat provident eaque, animi aliquam perspiciatis tenetur
-                dolores. Rerum?
+                Its high quality work helped the company expand to a medium size
+                contractor, managing a team of reliable builders, and running
+                multiple residential and commercial projects.
               </motion.p>
             </div>
           </div>
