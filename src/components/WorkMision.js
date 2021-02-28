@@ -98,7 +98,8 @@ const Wrapper = styled(motion.section)`
   }
 
   .container {
-    width: var(--max-width);
+    width: 90vw;
+    max-width: var(--max-width);
     margin: 0 auto;
     padding: 5rem 0 2rem 0;
     .row-2 {

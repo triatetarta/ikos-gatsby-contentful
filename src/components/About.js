@@ -70,8 +70,8 @@ const About = ({ projects }) => {
 
 const Wrapper = styled(motion.section)`
   padding-top: 6rem;
+  width: 90vw;
   max-width: var(--max-width);
-  width: var(--max-width);
   margin: 0 auto;
   .hide {
     overflow: hidden;

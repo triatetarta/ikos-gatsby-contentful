@@ -182,7 +182,7 @@ const Background = styled.div`
 `
 
 const Wrapper = styled.section`
-  width: var(--max-width);
+  width: 90vw;
   max-width: var(--max-width);
   margin: 6rem auto;
   display: grid;

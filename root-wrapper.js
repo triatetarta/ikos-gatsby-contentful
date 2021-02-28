@@ -51,7 +51,7 @@ Variables
   --radius: 0.25rem;
   --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  --max-width: 1280px;
+  --max-width: 1180px;
   --fixed-width: 620px;
 }
 /*
