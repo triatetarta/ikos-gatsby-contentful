@@ -17,6 +17,12 @@ const projectTemplate = ({
     project: {
       title,
       category,
+      roomOneTitle,
+      roomTwoTitle,
+      infoPhoto,
+      descOne,
+      descTwo,
+      descThree,
       info: { info },
       image: { fluid },
       photos,
@@ -78,11 +84,7 @@ const projectTemplate = ({
               className="mask"
             ></motion.div>
             <div className="text">
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Aliquid, saepe numquam tempore recusandae temporibus natus
-                accusamus vitae facere ipsum! Dolore?
-              </p>
+              <p>{infoPhoto}</p>
             </div>
           </div>
           <div className="right-image">
@@ -93,7 +95,14 @@ const projectTemplate = ({
             ></motion.div>
           </div>
         </RowOne>
-        <Rows photos={photos} />
+        <Rows
+          roomOneTitle={roomOneTitle}
+          roomTwoTitle={roomTwoTitle}
+          descOne={descOne}
+          descTwo={descTwo}
+          descThree={descThree}
+          photos={photos}
+        />
       </motion.div>
     </>
   )
@@ -104,6 +113,12 @@ export const query = graphql`
     project: contentfulProject(slug: { eq: $slug }) {
       title
       category
+      roomOneTitle
+      roomTwoTitle
+      infoPhoto
+      descOne
+      descTwo
+      descThree
       image {
         fluid(quality: 90, maxWidth: 1920) {
           ...GatsbyContentfulFluid

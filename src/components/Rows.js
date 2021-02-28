@@ -10,7 +10,14 @@ import {
   maskRevealShowcase,
 } from "../animations/animations"
 
-const Rows = ({ photos }) => {
+const Rows = ({
+  photos,
+  descOne,
+  descTwo,
+  descThree,
+  roomOneTitle,
+  roomTwoTitle,
+}) => {
   const [element, controls] = useScroll()
   const [element1, controls1] = useScroll()
   const [element2, controls2] = useScroll()
@@ -24,15 +31,10 @@ const Rows = ({ photos }) => {
       >
         <div className="left-side">
           <div className="hide">
-            <motion.h4 variants={titleAnim}>Room 1</motion.h4>
+            <motion.h4 variants={titleAnim}>{roomOneTitle}</motion.h4>
           </div>
           <div className="hide">
-            <motion.p variants={titleAnim}>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Perferendis excepturi vitae illo cupiditate. Corporis aperiam a
-              porro nam vitae blanditiis molestiae omnis quos. Nisi similique
-              numquam cum magnam possimus. Porro.
-            </motion.p>
+            <motion.p variants={titleAnim}>-</motion.p>
           </div>
 
           <div className="img">
@@ -45,15 +47,10 @@ const Rows = ({ photos }) => {
         </div>
         <div className="right-side">
           <div className="hide">
-            <motion.h4 variants={titleAnim}>Room 2</motion.h4>
+            <motion.h4 variants={titleAnim}>{roomTwoTitle}</motion.h4>
           </div>
           <div className="hide">
-            <motion.p variants={titleAnim}>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Perferendis excepturi vitae illo cupiditate. Corporis aperiam a
-              porro nam vitae blanditiis molestiae omnis quos. Nisi similique
-              numquam cum magnam possimus. Porro.
-            </motion.p>
+            <motion.p variants={titleAnim}>-</motion.p>
           </div>
 
           <div className="img">
@@ -76,7 +73,7 @@ const Rows = ({ photos }) => {
             fluid={{ ...photos[5].fluid, aspectRatio: 8 / 3 }}
             imgStyle={{ objectFit: "cover", objectPosition: "50% 50%" }}
           />
-          <p>description</p>
+          <p>{descOne}</p>
         </div>
         <motion.div variants={maskRevealShowcase} className="mask"></motion.div>
       </RowThree>
@@ -88,7 +85,7 @@ const Rows = ({ photos }) => {
       >
         <div className="img">
           <Image fluid={photos[6].fluid} />
-          <p>description</p>
+          <p>{descTwo}</p>
           <motion.div
             variants={maskRevealShowcase}
             className="mask"
@@ -96,7 +93,7 @@ const Rows = ({ photos }) => {
         </div>
         <div className="img">
           <Image fluid={photos[7].fluid} />
-          <p>description</p>
+          <p>{descThree}</p>
           <motion.div
             variants={maskRevealShowcase}
             className="mask"
