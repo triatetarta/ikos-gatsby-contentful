@@ -15,8 +15,8 @@ It includes:
 
 ## View Ikos Construction website:
 
-https://www.ikosconstruction.com/ "Ikos Construction"
+https://www.ikosconstruction.com/
 
 ### View Three Quarters website:
 
-https://www.threequarters.dev/ "Three Quarters"
+https://www.threequarters.dev/
