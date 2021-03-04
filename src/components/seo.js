@@ -32,6 +32,8 @@ function SEO({ description, lang, meta, title, image, siteUrl }) {
   const metaImage = image || site.siteMetadata.image
   const metaSiteUrl = siteUrl || site.siteMetadata.siteUrl
 
+  console.log(metaImage)
+
   return (
     <Helmet
       htmlAttributes={{
