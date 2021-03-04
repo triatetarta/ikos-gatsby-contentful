@@ -7,6 +7,8 @@ module.exports = {
     title: `Ikos Construction Ltd`,
     description: `Ikos Construction is a London based construction company that offers integrated, tailored solutions, at very competitive prices. Renovation, refurbishment and construction of residential or commercial properties are our specialties.`,
     author: `@threequarters`,
+    image: "/ikoshead.jpg",
+    siteUrl: `https://ikosconstruction.com`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
