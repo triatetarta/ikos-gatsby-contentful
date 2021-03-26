@@ -238,8 +238,8 @@ const Navbar = () => {
 export default Navbar
 
 const StyledNavbar = styled(motion.nav)`
+  width: 90vw;
   max-width: var(--max-width);
-  width: var(--max-width);
   min-height: 10vh;
   margin: 0 auto;
   display: flex;
